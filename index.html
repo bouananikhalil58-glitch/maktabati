@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>مكتبة الشيخ يخلف البوعناني</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+font-family: Tahoma, Arial, sans-serif;
+background: #fef3c7;
+min-height: 100vh;
+padding: 20px;
+color: #1f2937;
+}
+header {
+text-align: center;
+margin-bottom: 30px;
+padding: 30px 20px;
+background: white;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+header .icon { font-size: 60px; margin-bottom: 10px; }
+header h1 { font-size: 2rem; color: #92400e; margin-bottom: 10px; }
+header p { font-size: 1.2rem; color: #b45309; }
+header .count {
+display: inline-block;
+margin-top: 15px;
+padding: 10px 25px;
+background: #fef3c7;
+border-radius: 50px;
+font-size: 1.1rem;
+color: #78350f;
+font-weight: bold;
+}
+.all-books-btn {
+display: inline-block;
+margin-top: 15px;
+padding: 12px 30px;
+background: #92400e;
+color: white;
+border-radius: 30px;
+text-decoration: none;
+font-size: 1rem;
+font-weight: bold;
+}
+.all-books-btn:hover { background: #78350f; }
+.stats-title {
+text-align: center;
+font-size: 1.6rem;
+color: #78350f;
+margin: 30px 0 20px;
+}
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 20px;
+max-width: 1200px;
+margin: 0 auto;
+}
+.card {
+background: white;
+border-radius: 15px;
+padding: 25px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+border-right: 5px solid;
+text-decoration: none;
+color: inherit;
+display: block;
+transition: transform 0.3s, box-shadow 0.3s;
+cursor: pointer;
+}
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+.card-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 8px;
+}
+.card-name {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 1.2rem;
+font-weight: bold;
+}
+.card-icon { font-size: 1.6rem; }
+.card-count { font-size: 1.8rem; font-weight: bold; }
+.card-subtitle { color: #6b7280; font-size: 0.85rem; margin-bottom: 15px; }
+.progress-bar {
+width: 100%;
+height: 8px;
+background: #f3f4f6;
+border-radius: 50px;
+overflow: hidden;
+}
+.progress-fill { height: 100%; border-radius: 50px; }
+.card-percent { font-size: 0.8rem; color: #6b7280; margin-top: 5px; text-align: left; }
+footer { text-align: center; margin-top: 60px; padding: 30px; color: #92400e; }
+footer .dua { font-size: 1.1rem; margin-bottom: 10px; }
+footer .credit { font-size: 0.85rem; color: #b45309; }
+</style>
+</head>
+<body>
+
+<header>
+<div class="icon">📚</div>
+<h1>مكتبة الشيخ يخلف البوعناني</h1>
+<p>مغنية - الجزائر</p>
+<div class="count">812 كتاب في 10 مجالات</div>
+<br>
+<a href="livres.html" class="all-books-btn">📖 عرض جميع الكتب</a>
+</header>
+
+<h2 class="stats-title">📊 التصنيف حسب المجال - اضغط على أي مجال</h2>
+
+<div class="grid" id="domaines-grid"></div>
+
+<footer>
+<p class="dua">🤲 صدقة جارية على روح الشيخ يخلف البوعناني</p>
+<p class="credit">مكتبة عائلية - حفظ التراث</p>
+</footer>
+
+<script>
+var domaines = [
+{ nomAr: "فكر وتاريخ", nomFr: "Pensée & Histoire", count: 294, pourcentage: 36.2, couleur: "#8B5CF6", icone: "📜" },
+{ nomAr: "فقه", nomFr: "Jurisprudence", count: 138, pourcentage: 17.0, couleur: "#10B981", icone: "⚖️" },
+{ nomAr: "بلاغة وأدب", nomFr: "Rhétorique & Littérature", count: 125, pourcentage: 15.4, couleur: "#F59E0B", icone: "✍️" },
+{ nomAr: "تفسير وعلوم قرآن", nomFr: "Tafsir & Sciences du Coran", count: 97, pourcentage: 11.9, couleur: "#3B82F6", icone: "📖" },
+{ nomAr: "لغة ونحو", nomFr: "Langue & Grammaire", count: 59, pourcentage: 7.3, couleur: "#EC4899", icone: "🔤" },
+{ nomAr: "مجلة", nomFr: "Revues", count: 33, pourcentage: 4.1, couleur: "#06B6D4", icone: "📰" },
+{ nomAr: "رواية وقصة", nomFr: "Romans & Nouvelles", count: 27, pourcentage: 3.3, couleur: "#EF4444", icone: "📕" },
+{ nomAr: "مسرح ونقد", nomFr: "Théâtre & Critique", count: 16, pourcentage: 2.0, couleur: "#F97316", icone: "🎭" },
+{ nomAr: "قراءات", nomFr: "Lectures coraniques", count: 14, pourcentage: 1.7, couleur: "#84CC16", icone: "🕌" },
+{ nomAr: "طب وعلوم", nomFr: "Médecine & Sciences", count: 9, pourcentage: 1.1, couleur: "#6366F1", icone: "🔬" }
+];
+
+var grid = document.getElementById('domaines-grid');
+
+for (var i = 0; i < domaines.length; i++) {
+var d = domaines[i];
+var card = document.createElement('a');
+card.className = 'card';
+card.href = 'livres.html?domaine=' + encodeURIComponent(d.nomAr);
+card.style.borderRightColor = d.couleur;
+card.innerHTML = '<div class="card-header">' +
+'<div class="card-name"><span class="card-icon">' + d.icone + '</span><span>' + d.nomAr + '</span></div>' +
+'<div class="card-count" style="color:' + d.couleur + ';">' + d.count + '</div>' +
+'</div>' +
+'<div class="card-subtitle">' + d.nomFr + '</div>' +
+'<div class="progress-bar"><div class="progress-fill" style="width:' + d.pourcentage + '%;background-color:' + d.couleur + ';"></div></div>' +
+'<div class="card-percent">' + d.pourcentage + '%</div>';
+grid.appendChild(card);
+}
+</script>
+
+</body>
+</html>

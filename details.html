@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تفاصيل الكتاب</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; min-height: 100vh; padding: 20px; color: #1f2937; }
+.container { max-width: 800px; margin: 0 auto; }
+.header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+.header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
+.back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
+.book-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-right: 6px solid #92400e; }
+.book-title { font-size: 1.8rem; font-weight: bold; color: #1f2937; margin-bottom: 20px; line-height: 1.5; }
+.book-detail { font-size: 1.1rem; color: #4b5563; margin-bottom: 15px; border-bottom: 1px solid #f3f4f6; padding-bottom: 10px; }
+.book-detail strong { color: #92400e; margin-left: 10px; }
+.badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-top: 10px; }
+.error { text-align: center; color: #991b1b; font-size: 1.2rem; padding: 50px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="header">
+<h1>📖 تفاصيل الكتاب</h1>
+<a href="livres.html" class="back-link">← العودة إلى قائمة الكتب</a>
+</div>
+
+<div id="bookContent">
+<!-- Le contenu du livre va s'afficher ici -->
+</div>
+</div>
+
+<script src="livres-data.js"></script>
+<script>
+// Récupérer l'identifiant du livre depuis l'URL (ex: details.html?id=5)
+var params = new URLSearchParams(window.location.search);
+var bookId = params.get('id');
+
+var bookContent = document.getElementById('bookContent');
+
+if (!bookId) {
+bookContent.innerHTML = '<div class="error">لم يتم تحديد أي كتاب.</div>';
+} else {
+// Chercher le livre dans notre liste (qui vient de livres-data.js)
+var livre = null;
+for (var i = 0; i < livres.length; i++) {
+if (livres[i].n == bookId) {
+livre = livres[i];
+break;
+}
+}
+
+if (!livre) {
+bookContent.innerHTML = '<div class="error">لم يتم العثور على هذا الكتاب.</div>';
+} else {
+// Choisir la couleur selon le statut
+var statutClass = "background: #fee2e2; color: #991b1b;";
+if (livre.s === "موجود") statutClass = "background: #d1fae5; color: #065f46;";
+else if (livre.s === "تم تحميله") statutClass = "background: #dbeafe; color: #1e40af;";
+else if (livre.s === "قيد البحث") statutClass = "background: #fef3c7; color: #92400e;";
+
+var html = '<div class="book-card">';
+html += '<div class="book-title">' + livre.t + '</div>';
+html += '<div class="book-detail"><strong>المؤلف:</strong> ' + (livre.a || 'غير معروف') + '</div>';
+html += '<div class="book-detail"><strong>السنة:</strong> ' + (livre.y || 'غير محددة') + '</div>';
+html += '<div class="book-detail"><strong>المجال:</strong> ' + livre.d + '</div>';
+html += '<div class="book-detail"><strong>رقم الكتاب:</strong> #' + livre.n + '</div>';
+html += '<div style="margin-top:20px;"><strong>الحالة:</strong> <span class="badge" style="' + statutClass + '">' + livre.s + '</span></div>';
+html += '<div style="margin-top:30px; display:flex; gap:10px; flex-wrap:wrap;">';
+html += '<a href="https://www.google.com/search?q=' + encodeURIComponent(livre.t + ' ' + livre.a) + '" target="_blank" style="background:#4285F4; color:white; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:bold;">🔍 ابحث في Google</a>';
+html += '<a href="https://shamela.ws/search?q=' + encodeURIComponent(livre.t) + '" target="_blank" style="background:#10B981; color:white; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:bold;">📚 ابحث في المكتبة الشاملة</a>';
+html += '<a href="https://archive.org/search?query=' + encodeURIComponent(livre.t) + '" target="_blank" style="background:#F59E0B; color:white; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:bold;">🏛️ ابحث في Archive.org</a>';
+html += '<a href="https://www.noor-book.com/search?q=' + encodeURIComponent(livre.t) + '" target="_blank" style="background:#8B5CF6; color:white; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:bold;">📖 ابحث في مكتبة نور</a>';
+html += '<a href="https://www.hindawi.org/search/?q=' + encodeURIComponent(livre.t) + '" target="_blank" style="background:#EF4444; color:white; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:bold;">📚 ابحث في هنداوي</a>';
+html += '</div>'; // Ferme la div des boutons
+html += '</div>'; // Ferme la carte du livre (book-card)
+
+
+bookContent.innerHTML = html;
+}
+}
+</script>
+
+</body>
+</html>

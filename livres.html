@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>قائمة الكتب - مكتبة الشيخ يخلف</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; min-height: 100vh; padding: 20px; color: #1f2937; }
+.header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+.header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
+.header .back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
+.search-box { max-width: 700px; margin: 0 auto 30px; display: flex; gap: 10px; flex-wrap: wrap; }
+.search-box input, .search-box select { padding: 12px 15px; border: 2px solid #fde68a; border-radius: 10px; font-size: 1rem; font-family: inherit; background: white; }
+.search-box input { flex: 1; min-width: 250px; }
+.search-box select { min-width: 200px; }
+.stats { text-align: center; color: #78350f; margin-bottom: 20px; font-size: 1.1rem; font-weight: bold; }
+.livres-list { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
+.livre-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-right: 4px solid #92400e; transition: transform 0.2s; }
+.livre-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+.livre-numero { display: inline-block; background: #fef3c7; color: #78350f; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; }
+.livre-titre { font-size: 1.05rem; font-weight: bold; color: #1f2937; margin-bottom: 10px; line-height: 1.5; }
+.livre-info { font-size: 0.9rem; color: #6b7280; margin-bottom: 5px; }
+.livre-info strong { color: #374151; }
+.livre-domaine { display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+.livre-statut { display: inline-block; margin-right: 5px; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; }
+.statut-moujoud { background: #d1fae5; color: #065f46; }
+.statut-mafqud { background: #fee2e2; color: #991b1b; }
+.statut-tahmil { background: #dbeafe; color: #1e40af; }
+.statut-bahth { background: #fef3c7; color: #92400e; }
+.no-result { text-align: center; padding: 50px; color: #6b7280; font-size: 1.2rem; grid-column: 1 / -1; }
+footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>📚 قائمة الكتب</h1>
+<p style="color:#78350f;margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
+<a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
+</div>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف..." />
+<select id="domaineFilter">
+<option value="">📂 كل المجالات</option>
+</select>
+</div>
+
+<div class="stats" id="stats">جاري التحميل...</div>
+
+<div class="livres-list" id="livresList"></div>
+
+<footer>
+🤲 صدقة جارية على روح الشيخ يخلف البوعناني
+</footer>
+
+<!-- Chargement des données depuis livres-data.js -->
+<script src="livres-data.js"></script>
+
+<script>
+// Couleurs par domaine
+var couleursDomaines = {
+"فكر وتاريخ": "#8B5CF6",
+"فقه": "#10B981",
+"بلاغة وأدب": "#F59E0B",
+"تفسير وعلوم قرآن": "#3B82F6",
+"لغة ونحو": "#EC4899",
+"مجلة": "#06B6D4",
+"رواية وقصة": "#EF4444",
+"مسرح ونقد": "#F97316",
+"قراءات": "#84CC16",
+"طب وعلوم": "#6366F1"
+};
+
+var searchInput = document.getElementById('searchInput');
+var domaineFilter = document.getElementById('domaineFilter');
+var livresList = document.getElementById('livresList');
+var stats = document.getElementById('stats');
+
+// Remplir le filtre des domaines
+var domainesUniques = [];
+for (var i = 0; i < livres.length; i++) {
+if (domainesUniques.indexOf(livres[i].d) === -1) {
+domainesUniques.push(livres[i].d);
+}
+}
+for (var i = 0; i < domainesUniques.length; i++) {
+var opt = document.createElement('option');
+opt.value = domainesUniques[i];
+opt.textContent = domainesUniques[i];
+domaineFilter.appendChild(opt);
+}
+
+// Lire le domaine dans l'URL (si présent)
+var params = new URLSearchParams(window.location.search);
+var domaineURL = params.get('domaine');
+if (domaineURL) {
+domaineFilter.value = domaineURL;
+}
+
+// Fonction d'affichage
+function afficherLivres() {
+var recherche = searchInput.value.toLowerCase();
+var domaine = domaineFilter.value;
+
+var filtres = [];
+for (var i = 0; i < livres.length; i++) {
+var l = livres[i];
+var matchRecherche = recherche === "" || l.t.toLowerCase().indexOf(recherche) !== -1 || l.a.toLowerCase().indexOf(recherche) !== -1;
+var matchDomaine = domaine === "" || l.d === domaine;
+if (matchRecherche && matchDomaine) {
+filtres.push(l);
+}
+}
+
+livresList.innerHTML = "";
+
+if (filtres.length === 0) {
+livresList.innerHTML = '<div class="no-result">😔 لا توجد نتائج مطابقة</div>';
+stats.textContent = "0 كتاب";
+return;
+}
+
+stats.textContent = "📖 " + filtres.length + " كتاب";
+
+for (var i = 0; i < filtres.length; i++) {
+var l = filtres[i];
+var couleur = couleursDomaines[l.d] || "#92400e";
+
+var statutClass = "statut-mafqud";
+if (l.s === "موجود") statutClass = "statut-moujoud";
+else if (l.s === "تم تحميله") statutClass = "statut-tahmil";
+else if (l.s === "قيد البحث") statutClass = "statut-bahth";
+
+var card = document.createElement('div');
+card.className = 'livre-card';
+card.style.borderRightColor = couleur;
+card.onclick = function() { window.location.href = "details.html?id=" + l.n; };
+card.innerHTML = 
+'<div class="livre-numero">#' + l.n + '</div>' +
+'<div class="livre-titre">' + l.t + '</div>' +
+'<div class="livre-info">✍️ <strong>المؤلف:</strong> ' + (l.a || 'غير معروف') + '</div>' +
+(l.y ? '<div class="livre-info">📅 <strong>السنة:</strong> ' + l.y + '</div>' : '') +
+'<span class="livre-statut ' + statutClass + '">' + l.s + '</span>' +
+'<span class="livre-domaine" style="background:' + couleur + '20;color:' + couleur + ';">' + l.d + '</span>';
+
+livresList.appendChild(card);
+}
+}
+
+searchInput.addEventListener('input', afficherLivres);
+domaineFilter.addEventListener('change', afficherLivres);
+
+afficherLivres();
+</script>
+
+</body>
+</html>

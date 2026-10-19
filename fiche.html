@@ -46,7 +46,7 @@ bookContent.innerHTML = '<div class="error">لم يتم تحديد أي كتاب
 // Chercher le livre dans notre liste (qui vient de livres-data.js)
 var livre = null;
 for (var i = 0; i < livres.length; i++) {
-if (livres[i].n == bookId) {
+if (livres[i].n == bookId && livres[i].d === bookDom) {
 livre = livres[i];
 break;
 }

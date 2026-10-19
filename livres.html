@@ -95,7 +95,7 @@ else if (l.s === "قيد البحث") statutClass = "statut-bahth";
 var card = document.createElement('div');
 card.className = 'livre-card';
 card.style.borderRightColor = couleur;
-card.onclick = (function(livreActuel) { return function() { window.location.href = "fiche.html?id=" + livreActuel.n; }; })(l);
+card.onclick = function() { window.location.href = "fiche.html?id=" + l.n + "&dom=" + l.d; };
 card.innerHTML = '<div class="livre-numero">#' + l.n + '</div><div class="livre-titre">' + l.t + '</div><div class="livre-info">✍️ <strong>المؤلف:</strong> ' + (l.a || 'غير معروف') + '</div>' + (l.y ? '<div class="livre-info">📅 <strong>السنة:</strong> ' + l.y + '</div>' : '') + '<span class="livre-statut ' + statutClass + '">' + l.s + '</span><span class="livre-domaine" style="background:' + couleur + '20;color:' + couleur + ';">' + l.d + '</span>';
 livresList.appendChild(card);
 }

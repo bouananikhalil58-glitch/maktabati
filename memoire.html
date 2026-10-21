@@ -1,60 +1,94 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>مذاكرة الشيخ يخلف البوعناني</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; min-height: 100vh; padding: 20px; color: #1f2937; }
-.header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-.header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
-.back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
-.container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); line-height: 1.8; }
-h2 { color: #92400e; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #fde68a; padding-bottom: 5px; }
-h3 { color: #92400e; margin-top: 20px; margin-bottom: 10px; }
-p { margin-bottom: 15px; font-size: 1.1rem; text-align: justify; }
-.audio-box { text-align: center; margin-bottom: 30px; padding: 20px; background: #fef3c7; border-radius: 15px; }
-audio { width: 100%; max-width: 400px; margin-top: 10px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مذكرات الشيخ يخلف البوعناني - Mémoires</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; min-height: 100vh; padding: 20px; color: #1f2937; }
+        .header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .header h1 { font-family: 'Amiri', serif; font-size: 2rem; color: #92400e; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; border: none; cursor: pointer; }
+        .back-link:hover { background: #78350f; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); line-height: 1.8; }
+        h2 { color: #92400e; margin-top: 20px; margin-bottom: 15px; border-bottom: 2px solid #fde68a; padding-bottom: 5px; font-family: 'Amiri', serif; }
+        .audio-box { text-align: center; margin-bottom: 30px; padding: 20px; background: #fef3c7; border-radius: 15px; }
+        audio { width: 100%; max-width: 400px; margin-top: 10px; }
+        .pdf-container { width: 100%; height: 70vh; min-height: 500px; border: 2px solid #fde68a; border-radius: 10px; overflow: hidden; margin-bottom: 20px; background: #f9f9f9; }
+        .pdf-container iframe { width: 100%; height: 100%; border: none; }
+        .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+        .btn-action { padding: 12px 25px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 1rem; transition: 0.3s; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .btn-green { background: #10b981; }
+        .btn-green:hover { background: #059669; }
+        .btn-blue { background: #3b82f6; }
+        .btn-blue:hover { background: #2563eb; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 15px; }
+            .header h1 { font-size: 1.5rem; }
+            .pdf-container { height: 60vh; min-height: 400px; }
+            .btn-action { width: 100%; justify-content: center; }
+        }
+        @media print {
+            .audio-box, .actions, .back-link, .pdf-container { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; padding: 0; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="header">
-<h1>🤲 مذاكرة الشيخ يخلف البوعناني</h1>
-<a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
-</div>
+    <div class="header">
+        <h1>🤲 مذكرات الشيخ يخلف البوعناني</h1>
+        <a href="index.html" class="back-link">← العودة إلى الرئيسية (Retour)</a>
+    </div>
 
-<div class="container">
+    <div class="container">
+        
+        <div class="audio-box">
+            <h2>🎙️ صوته الشريف (تلاوة القرآن)</h2>
+            <p>استمع إلى صوت الشيخ يخلف البوعناني رحمه الله</p>
+            <!-- J'ai remplacé "voix.mp3" par "audio1.mp3" car c'est le nom de votre fichier -->
+            <audio controls aria-label="تلاوة القرآن بصوت الشيخ">
+                <source src="audio1.mp3" type="audio/mpeg">
+                متصفحك لا يدعم تشغيل الصوت.
+            </audio>
+        </div>
 
-<div class="audio-box">
-<h2>🎙️ صوته الشريف (تلاوة القرآن)</h2>
-<p>استمع إلى صوت الشيخ يخلف البوعناني رحمه الله</p>
-<audio controls>
-  <source src="voix.mp3" type="audio/mpeg">
-  متصفحك لا يدعم تشغيل الصوت.
-</audio>
-</div>
+        <h2>📖 المذكرات كاملة (بالعربية) - 300 صفحة</h2>
+        
+        <div class="pdf-container">
+            <iframe src="memoire-ar.pdf#toolbar=1" title="مذكرات الشيخ بالعربية">
+                متصفحك لا يدعم عرض ملفات PDF. 
+                <a href="memoire-ar.pdf">اضغط هنا لتحميل الملف.</a>
+            </iframe>
+        </div>
 
-<h2>📖 مذاكرة الأيام (بالعربية)</h2>
-<div id="texte-arabe">
-  <p>جاري تحميل النص...</p>
-</div>
+        <div class="actions">
+            <a href="memoire-ar.pdf" download class="btn-action btn-green">
+                ⬇️ تحميل المذكرات (PDF)
+            </a>
+            <a href="memoire-ar.pdf" target="_blank" class="btn-action btn-blue">
+                🔍 فتح في نافذة جديدة
+            </a>
+        </div>
 
-<h2>📖 La Mémoire des Jours (en Français)</h2>
-<div id="texte-francais" style="direction: ltr; text-align: left;">
-  <h3>Introduction</h3>
-  <p>À présent, donne-moi la main afin que je te conduise sur le chemin que j’ai parcouru jusqu’à ce jour. Tu trouveras ma vie exposée avec quelque détail dans ces mémoires que tu tiens entre tes mains. Tout ce qu’elles rapportent est une réalité que j’ai vécue ; l’imagination n’y a aucune place, notamment dans le récit des jours d’internement et des années de prison. Tu y trouveras, en résumé, l’essentiel de ce qui peut te la rappeler.</p>
-  <p>Tu suivras ainsi mon parcours depuis l’enfance jusqu’à l’âge mûr, puis à la vieillesse.</p>
-  <p>Ne quitte ni les mosquées consacrées à l’adoration ni les établissements du savoir. Recherche la connaissance depuis le berceau suspendu jusqu’au jour où tu reposeras dans la tombe, hôte de mon Seigneur.</p>
-  <p>Ô Dieu, accueille-moi auprès de Toi, Seigneur, parmi les étudiants du savoir et leurs maîtres, ces savants qui ont uni la science à l’action, auxquels Tu as transmis le Livre, que Tu as choisis parmi Tes serviteurs vertueux et que, par Ta grâce, Tu as établis dans la demeure éternelle.</p>
-  <p><em>Cheikh Yekhlef Bouanani</em></p>
+        <!-- Section PDF Français -->
+        <h2>📖 La Mémoire des Jours (en Français)</h2>
+        <div class="pdf-container">
+            <iframe src="memoire-fr.pdf#toolbar=1" title="Mémoire en français">
+                Votre navigateur ne supporte pas l'affichage des PDF.
+                <a href="memoire-fr.pdf">Cliquez ici pour télécharger.</a>
+            </iframe>
+        </div>
+        <div class="actions">
+            <a href="memoire-fr.pdf" download class="btn-action btn-green">⬇️ Télécharger (FR)</a>
+            <a href="memoire-fr.pdf" target="_blank" class="btn-action btn-blue">🔍 Ouvrir (FR)</a>
+        </div>
 
-  <h3>Ma naissance</h3>
-  <p>Je suis né le vingt-septième mardi du mois d’octobre de l’année 1925 (1925/10/27), à côté de la quobba de Sidi Khalaf du rond-point de Kazzala, trône de Bin Khallad. J’étais affilié administrativement à l’époque à Nedroma.</p>
-  <p>Je suis le sixième de mes cinq frères et sœurs mâles, et j'ai deux sœurs. J'ai été appelé Yekhlef Bouanani après avoir épuisé les noms des saints dans mes frères qui m'ont précédé : Abdelkader (pour Abdelkader Jilali), Abdul Rahman (pour Sidi Yacoub), Mahomet, Mahomet, Ahmed, Fatima, et une autre.</p>
-</div>
-
-</div>
+    </div>
 
 </body>
 </html>

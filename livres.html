@@ -136,7 +136,21 @@ var domaine = domaineFilter.value;
 var filtres = [];
 for (var i = 0; i < livres.length; i++) {
 var l = livres[i];
-var matchRecherche = recherche === "" || l.t.toLowerCase().indexOf(recherche) !== -1 || l.a.toLowerCase().indexOf(recherche) !== -1;
+         // On récupère le texte de la carte, l'auteur, etc.
+        var texteRecherche = (l.titre || "") + " " + (l.auteur || ""); 
+        
+        // On ajoute les mots-clés s'ils existent (l.motscles)
+                if (l.m) {
+         texteRecherche += " " + l.m.join(" ");
+        }
+        
+        // On convertit tout en minuscules pour la recherche
+        texteRecherche = texteRecherche.toLowerCase();  
+        var motsClesTexte = (l.m || []).join(" ").toLowerCase();
+        var matchRecherche = recherche === "" || 
+                             (l.t || "").toLowerCase().includes(recherche) || 
+                             (l.a || "").toLowerCase().includes(recherche) || 
+                             motsClesTexte.includes(recherche);
 var matchDomaine = domaine === "" || l.d === domaine;
 if (matchRecherche && matchDomaine) { filtres.push(l); }
 }

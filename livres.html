@@ -43,11 +43,26 @@ footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; fo
 </head>
 <body>
 
-<div class="header">
-<h1>📚 قائمة الكتب</h1>
-<p style="color:#78350f;margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
-<a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
-</div>
+   
+
+    <!-- 1. L'EN-TÊTE (qui avait été effacé) -->
+    <div class="header">
+        <h1>📚 فهرسة الكتب</h1>
+        <p style="color:#78350f; margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
+        <a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
+    </div>
+
+    <!-- 2. LA BARRE DE RECHERCHE (celle de votre code d'origine) -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف..." />
+        <select id="domaineFilter">
+            <option value="">🗂️ كل المجالات</option>
+        </select>
+    </div>
+
+    <!-- 3. LES CONTENEURS DE RÉSULTATS (déjà présents dans votre code) -->
+    <div class="stats" id="stats">جاري التحميل...</div>
+    <div class="livres-list" id="livresList"></div>
 
 <div class="search-box">
 <input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف..." />

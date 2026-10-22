@@ -187,6 +187,7 @@
             document.getElementById('modalDomaine').textContent = "المجال: " + l.d;
             document.getElementById('modalYear').textContent = l.y ? "السنة: " + l.y : "";
             document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
+                   document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
             document.getElementById('bookModal').style.display = "block";
         }
 

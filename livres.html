@@ -163,7 +163,7 @@
             document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
                         document.getElementById('modalSearchBtn').onclick = function() { closeModal(); };
             document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
-                        document.getElementById('btnGoogle').href = "https://www.google.com/search?q=" + encodeURIComponent(l.t + " " + (l.a || ''));
+            document.getElementById('btnGoogle').href = "https://www.google.com/search?q=" + encodeURIComponent(l.t + " " + (l.a || ''));
             document.getElementById('btnArchive').href = "https://archive.org/search?query=" + encodeURIComponent(l.t);
             document.getElementById('bookModal').style.display = "block";
         }

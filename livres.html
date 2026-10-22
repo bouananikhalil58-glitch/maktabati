@@ -64,7 +64,8 @@
             <p class="modal-detail" id="modalStatus"></p>
             <div class="modal-buttons">
                 <a href="#" class="btn-search" id="modalSearchBtn">🔍 بحث في المجال</a>
-            </div>
+                           <a href="#" class="btn-search" id="btnGoogle" target="_blank" style="background: #4285f4;">🔍 Google</a>
+                <a href="#" class="btn-search" id="btnArchive" target="_blank" style="background: #10b981;">📚 Archive</a> 
         </div>
     </div>
 
@@ -162,6 +163,8 @@
             document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
                         document.getElementById('modalSearchBtn').onclick = function() { closeModal(); };
             document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
+                        document.getElementById('btnGoogle').href = "https://www.google.com/search?q=" + encodeURIComponent(l.t + " " + (l.a || ''));
+            document.getElementById('btnArchive').href = "https://archive.org/search?query=" + encodeURIComponent(l.t);
             document.getElementById('bookModal').style.display = "block";
         }
 

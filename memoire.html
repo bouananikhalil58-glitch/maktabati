@@ -51,10 +51,25 @@
             <h2>🎙️ صوته الشريف (تلاوة القرآن)</h2>
             <p>استمع إلى صوت الشيخ يخلف البوعناني رحمه الله</p>
             <!-- J'ai remplacé "voix.mp3" par "audio1.mp3" car c'est le nom de votre fichier -->
-            <audio controls aria-label="تلاوة القرآن بصوت الشيخ">
-                   <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio4.mp3" type="audio/mpeg"> 
-                متصفحك لا يدعم تشغيل الصوت.
-            </audio>
+        
+                     <div style="text-align: center; margin-bottom: 20px;">
+            <label for="audioSelect" style="font-weight: bold; color: #92400e; font-size: 1.1rem;">اختر التلاوة (Choisir l'audio) :</label>
+            <br>
+            <select id="audioSelect" style="padding: 10px 20px; border-radius: 10px; border: 2px solid #92400e; margin-top: 10px; font-family: Tahoma; font-size: 1rem; cursor: pointer;" onchange="changeAudio()">
+                <option value="audio4.mp3">تلاوة 1 (Audio 4)</option>
+                <option value="audio2.mp3">تلاوة 2 (Audio 2)</option>
+                <option value="audio3.mp3">تلاوة 3 (Audio 3)</option>
+                <option value="audio1.mp3">تلاوة 4 (Audio 1)</option>
+                <!-- Ajoutez vos autres fichiers ici sur le même modèle -->
+            </select>
+        </div>
+
+        <audio id="mainAudio" controls style="width: 100%; max-width: 400px; margin-top: 10px;">
+            <source id="audioSource" src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio4.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوت.
+        </audio>   
+                
+            
         </div>
 
         <h2>📖 المذكرات كاملة (بالعربية) - 300 صفحة</h2>
@@ -73,7 +88,48 @@
             <a href="memoire-ar.pdf" target="_blank" class="btn-action btn-blue">
                 🔍 فتح في نافذة جديدة
             </a>
+        </div>        <div style="text-align: center; margin-bottom: 20px;">
+            <label for="audioSelect" style="font-weight: bold; color: #92400e; font-size: 1.1rem;">اختر التلاوة (Choisir l'audio) :</label>
+            <br>
+            <select id="audioSelect" style="padding: 10px 20px; border-radius: 10px; border: 2px solid #92400e; margin-top: 10px; font-family: Tahoma; font-size: 1rem; cursor: pointer;" onchange="changeAudio()">
+                <option value="audio4.mp3">تلاوة 1 (Audio 4)</option>
+                <option value="audio2.mp3">تلاوة 2 (Audio 2)</option>
+                <option value="audio3.mp3">تلاوة 3 (Audio 3)</option>
+                <option value="audio1.mp3">تلاوة 4 (Audio 1)</option>
+                <!-- Ajoutez vos autres fichiers ici sur le même modèle -->
+            </select>
         </div>
+
+            <div style="margin-bottom: 20px;">
+            <p style="font-weight: bold; color: #92400e;">🎙️ تلاوة 1 (Audio 4)</p>
+            <audio controls style="width: 100%; max-width: 400px;">
+                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio4.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: bold; color: #92400e;">🎙️ تلاوة 2 (Audio 2)</p>
+            <audio controls style="width: 100%; max-width: 400px;">
+                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio2.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: bold; color: #92400e;">🎙️ تلاوة 3 (Audio 3)</p>
+            <audio controls style="width: 100%; max-width: 400px;">
+                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio3.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: bold; color: #92400e;">🎙️ تلاوة 4 (Audio 1)</p>
+            <audio controls style="width: 100%; max-width: 400px;">
+                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio1.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+            
+            
+    
 
         <!-- Section PDF Français -->
         <h2>📖 La Mémoire des Jours (en Français)</h2>
@@ -90,5 +146,6 @@
 
     </div>
 
+    
 </body>
 </html>

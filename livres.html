@@ -10,17 +10,12 @@
         .header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
         .header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
         .back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
-        
-        /* Barre de recherche */
         .search-box { max-width: 900px; margin: 0 auto 20px auto; display: flex; gap: 10px; flex-wrap: wrap; }
         .search-box input { flex: 1; min-width: 200px; padding: 15px 20px; font-size: 1.1rem; border: 2px solid #92400e; border-radius: 30px; outline: none; font-family: Tahoma, Arial, sans-serif; }
         .search-box select { padding: 15px 20px; font-size: 1.1rem; border: 2px solid #92400e; border-radius: 30px; background: white; cursor: pointer; outline: none; }
-        
         .stats { text-align: center; font-size: 1.2rem; font-weight: bold; color: #92400e; margin-bottom: 20px; }
-        
-        /* Grille des livres */
         .livres-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .livre-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #92400e; display: flex; flex-direction: column; gap: 10px; position: relative; }
+        .livre-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #92400e; display: flex; flex-direction: column; gap: 10px; position: relative; cursor: pointer; }
         .livre-numero { position: absolute; top: 10px; left: 10px; background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
         .livre-titre { font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-top: 15px; }
         .livre-info { font-size: 0.9rem; color: #6b7280; }
@@ -28,11 +23,8 @@
         .badge { padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; }
         .badge-domaine { background: #e0f2fe; color: #0369a1; }
         .badge-statut { background: #f3f4f6; color: #4b5563; }
-        
         .no-result { text-align: center; padding: 50px; color: #6b7280; font-size: 1.2rem; grid-column: 1 / -1; }
         footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; font-size: 0.9rem; }
-
-        /* Modal (Pop-up) */
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: #fef3c7; margin: 10% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; position: relative; }
         .close-btn { position: absolute; top: 10px; left: 15px; color: #92400e; font-size: 30px; font-weight: bold; cursor: pointer; }
@@ -40,15 +32,10 @@
         .modal-detail { font-size: 1.1rem; color: #374151; margin-bottom: 10px; text-align: right; }
         .modal-buttons { margin-top: 25px; display: flex; gap: 10px; justify-content: center; }
         .btn-search { display: inline-block; padding: 10px 20px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; background: #92400e; }
-
-        @media (max-width: 600px) {
-            .search-box { flex-direction: column; }
-            .header h1 { font-size: 1.4rem; }
-        }
+        @media (max-width: 600px) { .search-box { flex-direction: column; } .header h1 { font-size: 1.4rem; } }
     </style>
 </head>
 <body>
-
     <div class="header">
         <h1>📚 فهرسة الكتب</h1>
         <p style="color:#78350f; margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
@@ -67,7 +54,6 @@
 
     <footer>🤲 صدقة جارية على روح الشيخ يخلف البوعناني</footer>
 
-    <!-- Fenêtre Pop-up -->
     <div id="bookModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -91,7 +77,6 @@
         };
 
         window.onload = function() {
-                    // 1. Remplir le menu déroulant des domaines
             var select = document.getElementById('domaineFilter');
             var domainesUniques = [];
             if (typeof livres !== 'undefined') {
@@ -108,13 +93,85 @@
                 });
             }
 
-            // 2. Vérifier s'il y a un domaine dans l'URL (?domaine=...)
             var urlParams = new URLSearchParams(window.location.search);
             var domaineURL = urlParams.get('domaine');
             if (domaineURL) {
                 select.value = domaineURL;
             }
 
-            // 3. Afficher les livres avec ou sans filtre
             afficherLivres();
         };
+
+        function afficherLivres() {
+            var recherche = document.getElementById('searchInput').value.toLowerCase();
+            var domaine = document.getElementById('domaineFilter').value;
+            var filtres = [];
+
+            for (var i = 0; i < livres.length; i++) {
+                var l = livres[i];
+                var texteRecherche = (l.t || "") + " " + (l.a || "");
+                if (l.m) { texteRecherche += " " + l.m.join(" "); }
+                texteRecherche = texteRecherche.toLowerCase();
+
+                var matchRecherche = recherche === "" || texteRecherche.includes(recherche);
+                var matchDomaine = domaine === "" || l.d === domaine;
+
+                if (matchRecherche && matchDomaine) { filtres.push(l); }
+            }
+
+            var container = document.getElementById('livresList');
+            container.innerHTML = "";
+
+            if (filtres.length === 0) {
+                container.innerHTML = '<div class="no-result">😔 لم يتم العثور على نتائج مطابقة</div>';
+                document.getElementById('stats').textContent = "0 كتب";
+                return;
+            }
+
+            document.getElementById('stats').textContent = "📚 " + filtres.length + " كتب";
+
+            for (var i = 0; i < filtres.length; i++) {
+                var l = filtres[i];
+                var couleur = couleurDomaines[l.d] || "#92400e";
+                var card = document.createElement('div');
+                card.className = 'livre-card';
+                card.style.borderRightColor = couleur;
+                card.onclick = (function(livre) { return function() { openModal(livre); }; })(l);
+                
+                card.innerHTML = 
+                    '<div class="livre-numero">#' + (l.n || i+1) + '</div>' +
+                    '<div class="livre-titre">' + l.t + '</div>' +
+                    '<div class="livre-info">✍️ ' + (l.a || 'غير معروف') + '</div>' +
+                    (l.y ? '<div class="livre-info">📅 ' + l.y + '</div>' : '') +
+                    '<div class="livre-badges">' +
+                        '<span class="badge badge-domaine">' + l.d + '</span>' +
+                        '<span class="badge badge-statut">' + (l.s || '') + '</span>' +
+                    '</div>';
+                container.appendChild(card);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', afficherLivres);
+        document.getElementById('domaineFilter').addEventListener('change', afficherLivres);
+
+        function openModal(l) {
+            document.getElementById('modalTitle').textContent = l.t;
+            document.getElementById('modalAuthor').textContent = "المؤلف: " + (l.a || 'غير معروف');
+            document.getElementById('modalDomaine').textContent = "المجال: " + l.d;
+            document.getElementById('modalYear').textContent = l.y ? "السنة: " + l.y : "";
+            document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
+            document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
+            document.getElementById('bookModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('bookModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('bookModal');
+            if (event.target == modal) { closeModal(); }
+        }
+    </script>
+</body>
+</html>

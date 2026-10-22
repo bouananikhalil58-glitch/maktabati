@@ -91,16 +91,7 @@
         };
 
         window.onload = function() {
-                       // Récupérer le domaine depuis l'URL (ex: ?domaine=fiqh)
-            var urlParams = new URLSearchParams(window.location.search);
-            var domaineURL = urlParams.get('domaine');
-            if (domaineURL) {
-                setTimeout(function() {
-                    document.getElementById('domaineFilter').value = domaineURL;
-                    afficherLivres();
-                }, 500);
-            }
-            // Remplir le menu déroulant des domaines
+                    // 1. Remplir le menu déroulant des domaines
             var select = document.getElementById('domaineFilter');
             var domainesUniques = [];
             if (typeof livres !== 'undefined') {
@@ -116,91 +107,14 @@
                     select.appendChild(option);
                 });
             }
+
+            // 2. Vérifier s'il y a un domaine dans l'URL (?domaine=...)
+            var urlParams = new URLSearchParams(window.location.search);
+            var domaineURL = urlParams.get('domaine');
+            if (domaineURL) {
+                select.value = domaineURL;
+            }
+
+            // 3. Afficher les livres avec ou sans filtre
             afficherLivres();
         };
-
-        function afficherLivres() {
-            var recherche = document.getElementById('searchInput').value.toLowerCase();
-            var domaine = document.getElementById('domaineFilter').value;
-            var filtres = [];
-
-            for (var i = 0; i < livres.length; i++) {
-                var l = livres[i];
-                var texteRecherche = (l.t || "") + " " + (l.a || "");
-                
-                // Ajout des mots-clés
-                if (l.m) {
-                    texteRecherche += " " + l.m.join(" ");
-                }
-                texteRecherche = texteRecherche.toLowerCase();
-
-                var matchRecherche = recherche === "" || texteRecherche.includes(recherche);
-                var matchDomaine = domaine === "" || l.d === domaine;
-
-                if (matchRecherche && matchDomaine) {
-                    filtres.push(l);
-                }
-            }
-
-            var container = document.getElementById('livresList');
-            container.innerHTML = "";
-
-            if (filtres.length === 0) {
-                container.innerHTML = '<div class="no-result">😔 لم يتم العثور على نتائج مطابقة</div>';
-                document.getElementById('stats').textContent = "0 كتب";
-                return;
-            }
-
-            document.getElementById('stats').textContent = "📚 " + filtres.length + " كتب";
-
-            for (var i = 0; i < filtres.length; i++) {
-                var l = filtres[i];
-                var couleur = couleurDomaines[l.d] || "#92400e";
-                
-                var card = document.createElement('div');
-                card.className = 'livre-card';
-                card.style.borderRightColor = couleur;
-                card.onclick = (function(livre) { return function() { openModal(livre); }; })(l);
-                
-                card.innerHTML = 
-                    '<div class="livre-numero">#' + (l.n || i+1) + '</div>' +
-                    '<div class="livre-titre">' + l.t + '</div>' +
-                    '<div class="livre-info">✍️ ' + (l.a || 'غير معروف') + '</div>' +
-                    (l.y ? '<div class="livre-info">📅 ' + l.y + '</div>' : '') +
-                    '<div class="livre-badges">' +
-                        '<span class="badge badge-domaine">' + l.d + '</span>' +
-                        '<span class="badge badge-statut">' + (l.s || '') + '</span>' +
-                    '</div>';
-                
-                container.appendChild(card);
-            }
-        }
-
-        // Événements de recherche
-        document.getElementById('searchInput').addEventListener('input', afficherLivres);
-        document.getElementById('domaineFilter').addEventListener('change', afficherLivres);
-
-        // Gestion de la Pop-up
-        function openModal(l) {
-            document.getElementById('modalTitle').textContent = l.t;
-            document.getElementById('modalAuthor').textContent = "المؤلف: " + (l.a || 'غير معروف');
-            document.getElementById('modalDomaine').textContent = "المجال: " + l.d;
-            document.getElementById('modalYear').textContent = l.y ? "السنة: " + l.y : "";
-            document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
-                   document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
-            document.getElementById('bookModal').style.display = "block";
-        }
-
-        function closeModal() {
-            document.getElementById('bookModal').style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById('bookModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
-</body>
-</html>

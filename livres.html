@@ -91,6 +91,15 @@
         };
 
         window.onload = function() {
+                       // Récupérer le domaine depuis l'URL (ex: ?domaine=fiqh)
+            var urlParams = new URLSearchParams(window.location.search);
+            var domaineURL = urlParams.get('domaine');
+            if (domaineURL) {
+                setTimeout(function() {
+                    document.getElementById('domaineFilter').value = domaineURL;
+                    afficherLivres();
+                }, 500);
+            }
             // Remplir le menu déroulant des domaines
             var select = document.getElementById('domaineFilter');
             var domainesUniques = [];

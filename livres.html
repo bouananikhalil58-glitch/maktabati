@@ -1,182 +1,196 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>قائمة الكتب - مكتبة الشيخ يخلف</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; min-height: 100vh; padding: 20px; color: #1f2937; }
-.header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-.header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
-.header .back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
-.search-box { max-width: 700px; margin: 0 auto 30px; display: flex; gap: 10px; flex-wrap: wrap; }
-.search-box input, .search-box select { padding: 12px 15px; border: 2px solid #fde68a; border-radius: 10px; font-size: 1rem; font-family: inherit; background: white; }
-.search-box input { flex: 1; min-width: 250px; }
-.search-box select { min-width: 200px; }
-.stats { text-align: center; color: #78350f; margin-bottom: 20px; font-size: 1.1rem; font-weight: bold; }
-.livres-list { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
-.livre-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-right: 4px solid #92400e; transition: transform 0.2s; cursor: pointer; }
-.livre-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-.livre-numero { display: inline-block; background: #fef3c7; color: #78350f; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; }
-.livre-titre { font-size: 1.05rem; font-weight: bold; color: #1f2937; margin-bottom: 10px; line-height: 1.5; }
-.livre-info { font-size: 0.9rem; color: #6b7280; margin-bottom: 5px; }
-.livre-info strong { color: #374151; }
-.livre-domaine { display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
-.livre-statut { display: inline-block; margin-right: 5px; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; }
-.statut-moujoud { background: #d1fae5; color: #065f46; }
-.statut-mafqud { background: #fee2e2; color: #991b1b; }
-.statut-tahmil { background: #dbeafe; color: #1e40af; }
-.statut-bahth { background: #fef3c7; color: #92400e; }
-.no-result { text-align: center; padding: 50px; color: #6b7280; font-size: 1.2rem; grid-column: 1 / -1; }
-footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; font-size: 0.9rem; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فهرسة الكتب - مكتبة الشيخ يخلف البوعناني</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; color: #1f2937; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
+        
+        /* Barre de recherche */
+        .search-box { max-width: 900px; margin: 0 auto 20px auto; display: flex; gap: 10px; flex-wrap: wrap; }
+        .search-box input { flex: 1; min-width: 200px; padding: 15px 20px; font-size: 1.1rem; border: 2px solid #92400e; border-radius: 30px; outline: none; font-family: Tahoma, Arial, sans-serif; }
+        .search-box select { padding: 15px 20px; font-size: 1.1rem; border: 2px solid #92400e; border-radius: 30px; background: white; cursor: pointer; outline: none; }
+        
+        .stats { text-align: center; font-size: 1.2rem; font-weight: bold; color: #92400e; margin-bottom: 20px; }
+        
+        /* Grille des livres */
+        .livres-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .livre-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #92400e; display: flex; flex-direction: column; gap: 10px; position: relative; }
+        .livre-numero { position: absolute; top: 10px; left: 10px; background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+        .livre-titre { font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-top: 15px; }
+        .livre-info { font-size: 0.9rem; color: #6b7280; }
+        .livre-badges { display: flex; gap: 5px; margin-top: auto; padding-top: 10px; }
+        .badge { padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; }
+        .badge-domaine { background: #e0f2fe; color: #0369a1; }
+        .badge-statut { background: #f3f4f6; color: #4b5563; }
+        
+        .no-result { text-align: center; padding: 50px; color: #6b7280; font-size: 1.2rem; grid-column: 1 / -1; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; font-size: 0.9rem; }
 
-/* STYLE DE LA FENÊTRE POP-UP */
-.modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
-.modal-content { background-color: #fef3c7; margin: 10% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 600px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; }
-.close-btn { position: absolute; top: 10px; left: 15px; color: #92400e; font-size: 30px; font-weight: bold; cursor: pointer; }
-.close-btn:hover { color: #d97706; }
-.modal-title { font-size: 1.6rem; color: #92400e; margin-bottom: 20px; font-weight: bold; }
-.modal-detail { font-size: 1.1rem; color: #374151; margin-bottom: 10px; text-align: right; }
-.modal-buttons { margin-top: 25px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.btn-search { display: inline-block; padding: 10px 20px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-</style>
+        /* Modal (Pop-up) */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: #fef3c7; margin: 10% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; position: relative; }
+        .close-btn { position: absolute; top: 10px; left: 15px; color: #92400e; font-size: 30px; font-weight: bold; cursor: pointer; }
+        .modal-title { font-size: 1.6rem; color: #92400e; margin-bottom: 20px; font-weight: bold; }
+        .modal-detail { font-size: 1.1rem; color: #374151; margin-bottom: 10px; text-align: right; }
+        .modal-buttons { margin-top: 25px; display: flex; gap: 10px; justify-content: center; }
+        .btn-search { display: inline-block; padding: 10px 20px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; background: #92400e; }
+
+        @media (max-width: 600px) {
+            .search-box { flex-direction: column; }
+            .header h1 { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
-   
-
-    <!-- 1. L'EN-TÊTE (qui avait été effacé) -->
     <div class="header">
         <h1>📚 فهرسة الكتب</h1>
         <p style="color:#78350f; margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
         <a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
     </div>
 
-    <!-- 2. LA BARRE DE RECHERCHE (celle de votre code d'origine) -->
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف..." />
+        <input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف أو كلمة مفتاحية..." />
         <select id="domaineFilter">
-            <option value="">🗂️ كل المجالات</option>
+            <option value="">📂 كل المجالات</option>
         </select>
     </div>
 
-    <!-- 3. LES CONTENEURS DE RÉSULTATS (déjà présents dans votre code) -->
     <div class="stats" id="stats">جاري التحميل...</div>
     <div class="livres-list" id="livresList"></div>
 
-<div class="search-box">
-<input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف..." />
-<select id="domaineFilter">
-<option value="">📂 كل المجالات</option>
-</select>
-</div>
+    <footer>🤲 صدقة جارية على روح الشيخ يخلف البوعناني</footer>
 
-<div class="stats" id="stats">جاري التحميل...</div>
-<div class="livres-list" id="livresList"></div>
-<footer>🤲 صدقة جارية على روح الشيخ يخلف البوعناني</footer>
+    <!-- Fenêtre Pop-up -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-detail" id="modalAuthor"></p>
+            <p class="modal-detail" id="modalDomaine"></p>
+            <p class="modal-detail" id="modalYear"></p>
+            <p class="modal-detail" id="modalStatus"></p>
+            <div class="modal-buttons">
+                <a href="#" class="btn-search" id="modalSearchBtn">🔍 بحث في المجال</a>
+            </div>
+        </div>
+    </div>
 
-<!-- LA FENETRE POP-UP CACHÉE -->
-<div id="bookModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <div id="modalBody"></div>
-  </div>
-</div>
+    <script src="livres-data.js"></script>
+    <script>
+        var couleurDomaines = {
+            "فقه": "#10b981", "بلاغة وأدب": "#f59e0b", "تفسير وعلوم قرآن": "#3b82f6", 
+            "فكر وتاريخ": "#8b5cf6", "عقيدة": "#14b8a6", "لغة ونحو": "#ec4899",
+            "حديث": "#06b6d4", "تصوف": "#6366f1", "طب وعلوم": "#84cc16", "متفرقات": "#6b7280"
+        };
 
-<script src="livres-data.js"></script>
-<script>
-var couleursDomaines = { "فكر وتاريخ": "#8B5CF6", "فقه": "#10B981", "بلاغة وأدب": "#F59E0B", "تفسير وعلوم قرآن": "#3B82F6", "لغة ونحو": "#EC4899", "مجلة": "#06B6D4", "رواية وقصة": "#EF4444", "مسرح ونقد": "#F97316", "قراءات": "#84CC16", "طب وعلوم": "#6366F1" };
-var searchInput = document.getElementById('searchInput');
-var domaineFilter = document.getElementById('domaineFilter');
-var livresList = document.getElementById('livresList');
-var stats = document.getElementById('stats');
-var modal = document.getElementById('bookModal');
-var modalBody = document.getElementById('modalBody');
+        window.onload = function() {
+            // Remplir le menu déroulant des domaines
+            var select = document.getElementById('domaineFilter');
+            var domainesUniques = [];
+            if (typeof livres !== 'undefined') {
+                livres.forEach(function(l) {
+                    if (l.d && domainesUniques.indexOf(l.d) === -1) {
+                        domainesUniques.push(l.d);
+                    }
+                });
+                domainesUniques.forEach(function(d) {
+                    var option = document.createElement('option');
+                    option.value = d;
+                    option.textContent = d;
+                    select.appendChild(option);
+                });
+            }
+            afficherLivres();
+        };
 
-var domainesUniques = [];
-for (var i = 0; i < livres.length; i++) {
-if (domainesUniques.indexOf(livres[i].d) === -1) { domainesUniques.push(livres[i].d); }
-}
-for (var i = 0; i < domainesUniques.length; i++) {
-var opt = document.createElement('option');
-opt.value = domainesUniques[i];
-opt.textContent = domainesUniques[i];
-domaineFilter.appendChild(opt);
-}
+        function afficherLivres() {
+            var recherche = document.getElementById('searchInput').value.toLowerCase();
+            var domaine = document.getElementById('domaineFilter').value;
+            var filtres = [];
 
-function openModal(livre) {
-  var statutClass = "statut-mafqud";
-  if (livre.s === "موجود") statutClass = "statut-moujoud";
-  else if (livre.s === "تم تحميله") statutClass = "statut-tahmil";
-  else if (livre.s === "قيد البحث") statutClass = "statut-bahth";
-
-  var html = '<div class="modal-title">' + livre.t + '</div>';
-  html += '<div class="modal-detail"><strong>المؤلف:</strong> ' + (livre.a || 'غير معروف') + '</div>';
-  html += '<div class="modal-detail"><strong>السنة:</strong> ' + (livre.y || 'غير محددة') + '</div>';
-  html += '<div class="modal-detail"><strong>المجال:</strong> ' + livre.d + '</div>';
-  html += '<div class="modal-detail"><strong>رقم الكتاب:</strong> #' + livre.n + '</div>';
-  html += '<div class="modal-detail" style="margin-top:15px;"><strong>الحالة:</strong> <span class="livre-statut ' + statutClass + '">' + livre.s + '</span></div>';
-
-  html += '<div class="modal-buttons">';
-  html += '<a href="https://www.google.com/search?q=' + encodeURIComponent(livre.t + ' ' + livre.a) + '" target="_blank" class="btn-search" style="background:#4285F4;">🔍 Google</a>';
-  html += '<a href="https://shamela.ws/search?q=' + encodeURIComponent(livre.t) + '" target="_blank" class="btn-search" style="background:#10B981;">📚 الشاملة</a>';
-  html += '<a href="https://archive.org/search?query=' + encodeURIComponent(livre.t) + '" target="_blank" class="btn-search" style="background:#F59E0B;">🏛️ Archive</a>';
-  html += '</div>';
-
-  modalBody.innerHTML = html;
-  modal.style.display = "block";
-}
-
-function closeModal() { modal.style.display = "none"; }
-window.onclick = function(event) { if (event.target == modal) { closeModal(); } }
-
-function afficherLivres() {
-var recherche = searchInput.value.toLowerCase();
-var domaine = domaineFilter.value;
-var filtres = [];
-for (var i = 0; i < livres.length; i++) {
-var l = livres[i];
-         // On récupère le texte de la carte, l'auteur, etc.
-        var texteRecherche = (l.titre || "") + " " + (l.auteur || ""); 
-        
-        // On ajoute les mots-clés s'ils existent (l.motscles)
+            for (var i = 0; i < livres.length; i++) {
+                var l = livres[i];
+                var texteRecherche = (l.t || "") + " " + (l.a || "");
+                
+                // Ajout des mots-clés
                 if (l.m) {
-         texteRecherche += " " + l.m.join(" ");
+                    texteRecherche += " " + l.m.join(" ");
+                }
+                texteRecherche = texteRecherche.toLowerCase();
+
+                var matchRecherche = recherche === "" || texteRecherche.includes(recherche);
+                var matchDomaine = domaine === "" || l.d === domaine;
+
+                if (matchRecherche && matchDomaine) {
+                    filtres.push(l);
+                }
+            }
+
+            var container = document.getElementById('livresList');
+            container.innerHTML = "";
+
+            if (filtres.length === 0) {
+                container.innerHTML = '<div class="no-result">😔 لم يتم العثور على نتائج مطابقة</div>';
+                document.getElementById('stats').textContent = "0 كتب";
+                return;
+            }
+
+            document.getElementById('stats').textContent = "📚 " + filtres.length + " كتب";
+
+            for (var i = 0; i < filtres.length; i++) {
+                var l = filtres[i];
+                var couleur = couleurDomaines[l.d] || "#92400e";
+                
+                var card = document.createElement('div');
+                card.className = 'livre-card';
+                card.style.borderRightColor = couleur;
+                card.onclick = (function(livre) { return function() { openModal(livre); }; })(l);
+                
+                card.innerHTML = 
+                    '<div class="livre-numero">#' + (l.n || i+1) + '</div>' +
+                    '<div class="livre-titre">' + l.t + '</div>' +
+                    '<div class="livre-info">✍️ ' + (l.a || 'غير معروف') + '</div>' +
+                    (l.y ? '<div class="livre-info">📅 ' + l.y + '</div>' : '') +
+                    '<div class="livre-badges">' +
+                        '<span class="badge badge-domaine">' + l.d + '</span>' +
+                        '<span class="badge badge-statut">' + (l.s || '') + '</span>' +
+                    '</div>';
+                
+                container.appendChild(card);
+            }
         }
-        
-        // On convertit tout en minuscules pour la recherche
-        texteRecherche = texteRecherche.toLowerCase();  
-        var motsClesTexte = (l.m || []).join(" ").toLowerCase();
-        var matchRecherche = recherche === "" || 
-                             (l.t || "").toLowerCase().includes(recherche) || 
-                             (l.a || "").toLowerCase().includes(recherche) || 
-                             motsClesTexte.includes(recherche);
-var matchDomaine = domaine === "" || l.d === domaine;
-if (matchRecherche && matchDomaine) { filtres.push(l); }
-}
-livresList.innerHTML = "";
-if (filtres.length === 0) { livresList.innerHTML = '<div class="no-result">😔 لا توجد نتائج مطابقة</div>'; stats.textContent = "0 كتاب"; return; }
-stats.textContent = "📖 " + filtres.length + " كتاب";
 
-for (var i = 0; i < filtres.length; i++) {
-var l = filtres[i];
-var couleur = couleursDomaines[l.d] || "#92400e";
-var statutClass = "statut-mafqud";
-if (l.s === "موجود") statutClass = "statut-moujoud";
-else if (l.s === "تم تحميله") statutClass = "statut-tahmil";
-else if (l.s === "قيد البحث") statutClass = "statut-bahth";
+        // Événements de recherche
+        document.getElementById('searchInput').addEventListener('input', afficherLivres);
+        document.getElementById('domaineFilter').addEventListener('change', afficherLivres);
 
-var card = document.createElement('div');
-card.className = 'livre-card';
-card.style.borderRightColor = couleur;
-card.onclick = (function(livreActuel) { return function() { openModal(livreActuel); }; })(l);
-card.innerHTML = '<div class="livre-numero">#' + l.n + '</div><div class="livre-titre">' + l.t + '</div><div class="livre-info">✍️ <strong>المؤلف:</strong> ' + (l.a || 'غير معروف') + '</div>' + (l.y ? '<div class="livre-info">📅 <strong>السنة:</strong> ' + l.y + '</div>' : '') + '<span class="livre-statut ' + statutClass + '">' + l.s + '</span><span class="livre-domaine" style="background:' + couleur + '20;color:' + couleur + ';">' + l.d + '</span>';
-livresList.appendChild(card);
-}
-}
-searchInput.addEventListener('input', afficherLivres);
-domaineFilter.addEventListener('change', afficherLivres);
-afficherLivres();
-</script>
+        // Gestion de la Pop-up
+        function openModal(l) {
+            document.getElementById('modalTitle').textContent = l.t;
+            document.getElementById('modalAuthor').textContent = "المؤلف: " + (l.a || 'غير معروف');
+            document.getElementById('modalDomaine').textContent = "المجال: " + l.d;
+            document.getElementById('modalYear').textContent = l.y ? "السنة: " + l.y : "";
+            document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
+            document.getElementById('bookModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('bookModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('bookModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>

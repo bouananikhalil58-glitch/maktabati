@@ -1,72 +1,66 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>معرض الصور - مكتبة الشيخ يخلف</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; min-height: 100vh; padding: 20px; color: #1f2937; }
-.header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-.header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; }
-.back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
-.container { max-width: 1100px; margin: 0 auto; }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-.photo-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
-.photo-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-.photo-card img { width: 100%; height: 250px; object-fit: cover; display: block; }
-.photo-caption { padding: 15px; text-align: center; font-size: 1rem; color: #78350f; font-weight: bold; background: #fef3c7; }
-footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; font-size: 0.9rem; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الصور - مكتبة الشيخ يخلف البوعناني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Tahoma, Arial, sans-serif; background: #fef3c7; color: #1f2937; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; padding: 25px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 1.8rem; color: #92400e; margin-bottom: 10px; font-family: 'Amiri', serif; }
+        .back-link { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #92400e; color: white; border-radius: 30px; text-decoration: none; font-size: 0.9rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .photo-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .photo-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .photo-card img { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .photo-caption { padding: 15px; text-align: center; font-size: 1rem; color: #78350f; font-weight: bold; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; color: #92400e; font-size: 0.9rem; }
+    </style>
 </head>
 <body>
 
-<div class="header">
-<h1>📸 معرض الصور</h1>
-<p style="color:#78350f;margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
-<a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
-</div>
+    <div class="header">
+        <h1>📸 معرض الصور</h1>
+        <p style="color:#78350f; margin-bottom:10px;">مكتبة الشيخ يخلف البوعناني</p>
+        <a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
+    </div>
 
-<div class="container">
-<div class="gallery-grid">
+    <div class="container">
+        <div class="gallery-grid">
+            
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-4.jpg" alt="الشيخ يخلف البوعناني">
+                <div class="photo-caption">الشيخ يخلف البوعناني</div>
+            </div>
 
-<!-- Photo 1 -->
-<div class="photo-card">
-<img src="photo-1.jpg" alt="صورة 1">
-<div class="photo-caption">الشيخ يخلف البوعناني</div>
-</div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-2.jpg" alt="من ذكريات المكتبة">
+                <div class="photo-caption">من ذكريات المكتبة</div>
+            </div>
 
-<!-- Photo 2 -->
-<div class="photo-card">
-<img src="photo-2.jpg" alt="صورة 2">
-<div class="photo-caption">من ذكريات المكتبة</div>
-</div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-1.jpg" alt="الشيخ في بيته">
+                <div class="photo-caption">الشيخ في بيته</div>
+            </div>
 
+            <!-- Manuscrits -->
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/manuscript-1.jpg" alt="مخطوطة 1">
+                <div class="photo-caption">مخطوطة 1</div>
+            </div>
 
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/manuscript-2.jpg" alt="مخطوطة 2">
+                <div class="photo-caption">مخطوطة 2</div>
+            </div>
 
-
-
-
-<!-- Photo 6 -->
-<div class="photo-card">
-<img src="photo-4.jpg" alt="صورة 6">
-<div class="photo-caption">الشيخ في بيته</div>
-</div>
-        <!-- Manuscrits -->
-        <div class="photo-card">
-            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/manuscript-1.jpg" alt="مخطوطة 1" style="width: 100%; height: 250px; object-fit: cover; display: block;">
-            <div class="photo-caption">مخطوطة 1</div>
         </div>
+    </div>
 
-        <div class="photo-card">
-            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/manuscript-2.jpg" alt="مخطوطة 2" style="width: 100%; height: 250px; object-fit: cover; display: block;">
-            <div class="photo-caption">مخطوطة 2</div>
-        </div>
-</div>
-</div>
-
-<footer>
-🤲 صدقة جارية على روح الشيخ يخلف البوعناني
-</footer>
+    <footer>🤲 صدقة جارية على روح الشيخ يخلف البوعناني</footer>
 
 </body>
 </html>

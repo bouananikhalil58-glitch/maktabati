@@ -15,7 +15,6 @@
         .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); line-height: 1.8; }
         h2 { color: #92400e; margin-top: 20px; margin-bottom: 15px; border-bottom: 2px solid #fde68a; padding-bottom: 5px; font-family: 'Amiri', serif; }
         .audio-box { text-align: center; margin-bottom: 30px; padding: 20px; background: #fef3c7; border-radius: 15px; }
-        
         .pdf-container { width: 100%; height: 70vh; min-height: 500px; border: 2px solid #fde68a; border-radius: 10px; overflow: hidden; margin-bottom: 20px; background: #f9f9f9; }
         .pdf-container iframe { width: 100%; height: 100%; border: none; }
         .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
@@ -24,7 +23,7 @@
         .btn-green:hover { background: #059669; }
         .btn-blue { background: #3b82f6; }
         .btn-blue:hover { background: #2563eb; }
-        
+        .caption { text-align: center; color: #78350f; font-weight: bold; font-size: 1.1rem; margin-top: -20px; margin-bottom: 30px; }
         @media (max-width: 600px) {
             body { padding: 10px; }
             .container { padding: 15px; }
@@ -48,6 +47,7 @@
 
     <div class="container">
         
+        <!-- Section Audio -->
         <div class="audio-box">
             <h2>🎙️ صوته الشريف (تلاوة القرآن)</h2>
             <p style="margin-bottom: 20px;">استمع إلى صوت الشيخ يخلف البوعناني رحمه الله</p>
@@ -69,31 +69,77 @@
             </div>
 
             <div style="margin-bottom: 25px;">
-            <p style="font-weight: bold; color: #92400e; font-size: 1.1rem;">تلاوة 3</p>
-            <audio controls style="width: 100%; max-width: 400px;">
-                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio2.mp3" type="audio/mpeg">
-                متصفحك لا يدعم تشغيل الصوت.
-            </audio>
+                <p style="font-weight: bold; color: #92400e; font-size: 1.1rem;">تلاوة 3</p>
+                <audio controls style="width: 100%; max-width: 400px;">
+                    <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio2.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت.
+                </audio>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <p style="font-weight: bold; color: #92400e; font-size: 1.1rem;">تلاوة 4</p>
+                <audio controls style="width: 100%; max-width: 400px;">
+                    <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio4.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت.
+                </audio>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <p style="font-weight: bold; color: #92400e; font-size: 1.1rem;">تلاوة 5</p>
+                <audio controls style="width: 100%; max-width: 400px;">
+                    <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio1.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت.
+                </audio>
+            </div>
         </div>
 
-        <div style="margin-bottom: 25px;">
-            <p style="font-weight: bold; color: #92400e; font-size: 1.1rem;">تلاوة 4</p>
-            <audio controls style="width: 100%; max-width: 400px;">
-                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio4.mp3" type="audio/mpeg">
-                متصفحك لا يدعم تشغيل الصوت.
-            </audio>
-        </div>    
-
-        <div style="margin-bottom: 25px;">
-            <p style="font-weight: bold; color: #92400e; font-size: 1.1rem;">تلاوة 5</p>
-            <audio controls style="width: 100%; max-width: 400px;">
-                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/audio1.mp3" type="audio/mpeg">
-                متصفحك لا يدعم تشغيل الصوت.
-            </audio>
+        <!-- Section Photos -->
+        <h2>📸 صور الشيخ (Photos du Cheikh)</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 40px;">
+            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-4.jpg" alt="صورة الشيخ 1" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-2.jpg" alt="صورة الشيخ 2" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-3.jpg" alt="صورة الشيخ 3" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-1.jpg" alt="صورة الشيخ 4" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
         </div>
-                
-        
 
+        <!-- Section Vidéos -->
+        <h2>🎥 فيديو الشيخ 1 (Vidéo du Cheikh 1)</h2>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/video-cheikh.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+        <p class="caption">طلبة ولهاصة في زيارة للشيخ يخلف في منزله بمغنية</p>
+
+        <h2>🎥 فيديو الشيخ 2 (Vidéo du Cheikh 2)</h2>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <source src="https://cdn.mp4tourl.com/video/free/9cbbfe79-a97a-4426-a3bc-5c74dd92ca54.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+        <p class="caption">الشيخ يخلف في زيارات و لقاءات عديدة بمغنية</p>
+
+        <h2>🎥 فيديو الشيخ 3 (Vidéo du Cheikh 3)</h2>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <source src="https://cdn.mp4tourl.com/video/free/9c26d5f8-c3ec-40f7-aeaa-04218d85c219.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+        <p class="caption">الشيخ يخلف في زيارات و لقاءات عديدة بمغنية</p>
+
+        <h2>🎥 فيديو الشيخ 4 (Vidéo du Cheikh 4)</h2>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <source src="https://cdn.mp4tourl.com/video/free/f64900f3-da54-4a70-8799-081bc069c4ff.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+        <p class="caption">الشيخ يخلف في زيارات و لقاءات عديدة بمغنية</p>
+
+        <!-- Section PDF Arabe -->
         <h2>📖 المذكرات كاملة (بالعربية) - 300 صفحة</h2>
         <div class="pdf-container">
             <iframe src="memoire-ar.pdf#toolbar=1" title="مذكرات الشيخ بالعربية">
@@ -106,47 +152,8 @@
             <a href="memoire-ar.pdf" target="_blank" class="btn-action btn-blue">🔍 فتح في نافذة جديدة</a>
         </div>
 
-                       <h2>📸 صور الشيخ (Photos du Cheikh)</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 40px;">
-            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-1.jpg" alt="صورة الشيخ 1" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
-            
-            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-2.jpg" alt="صورة الشيخ 2" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
-            
-            <img src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/photo-5.jpg" alt="صورة الشيخ 3" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover;">
-        </div>
-                <h2>🎥 فيديو الشيخ (Vidéo du Cheikh)</h2>
-        <div style="text-align: center; margin-bottom: 30px;">
-            <video controls style="width: 100%; max-width: 400px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                <source src="https://raw.githubusercontent.com/bouananikhalil58-glitch/maktabati/main/video-cheikh.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-        <h2>🎥 فيديو الشيخ 2 (Vidéo du Cheikh 2)</h2>
-                  <p style="text-align: center; color: #78350f; font-weight: bold; font-size: 1.1rem; margin-top: -20px; margin-bottom: 30px;">طلبة ولهاصة في زيارة للشيخ يخلف في منزله بمغنية</p>     
-                <div style="text-align: center; margin-bottom: 30px;">
-            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                <source src="https://cdn.mp4tourl.com/video/free/9cbbfe79-a97a-4426-a3bc-5c74dd92ca54.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-        </div>
-               <p style="text-align: center; color: #78350f; font-weight: bold; font-size: 1.1rem; margin-top: -20px; margin-bottom: 30px;">الشيخ يخلف في زيارات و لقاءات عديدة بمغنية</p>
-
-        <h2>🎥 فيديو الشيخ 3 (Vidéo du Cheikh 3)</h2>
-        <div style="text-align: center; margin-bottom: 30px;">
-            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                <source src="https://cdn.mp4tourl.com/video/free/9c26d5f8-c3ec-40f7-aeaa-04218d85c219.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-        </div>
-        <p style="text-align: center; color: #78350f; font-weight: bold; font-size: 1.1rem; margin-top: -20px; margin-bottom: 30px;">الشيخ يخلف في زيارات و لقاءات عديدة بمغنية</p>
-
-        <h2>🎥 فيديو الشيخ 4 (Vidéo du Cheikh 4)</h2>
-        <div style="text-align: center; margin-bottom: 30px;">
-            <video controls style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                <source src="https://cdn.mp4tourl.com/video/free/f64900f3-da54-4a70-8799-081bc069c4ff.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-        </div>
-        <p style="text-align: center; color: #78350f; font-weight: bold; font-size: 1.1rem; margin-top: -20px; margin-bottom: 30px;">الشيخ يخلف في زيارات و لقاءات عديدة بمغنية</p>
-            <h2>📖 La Mémoire des Jours (en Français)</h2>
+        <!-- Section PDF Français -->
+        <h2>📖 La Mémoire des Jours (en Français)</h2>
         <div class="pdf-container">
             <iframe src="memoire-fr.pdf#toolbar=1" title="Mémoire en français">
                 Votre navigateur ne supporte pas l'affichage des PDF.

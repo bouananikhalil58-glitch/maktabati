@@ -42,8 +42,8 @@
         <a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
     </div>
 
-   <div style="text-align: center; margin-bottom: 20px;">
-    <a href="https://shamela.ws" target="_blank" style="background-color: #8b5cf6; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: bold; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">🔍 البحث في المكتبة الشاملة</a>
+   <div style="text-align: center; margin-bottom: 20px;"> 
+    <a href="https://shamela.ws" target="_blank" id="btnChamila" style="background-color: #8b5cf6; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: bold; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">🔍 البحث في المكتبة الشاملة</a>
 </div>
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="🔍 ابحث عن كتاب أو مؤلف أو كلمة مفتاحية..." />
@@ -167,6 +167,7 @@
                         document.getElementById('modalSearchBtn').onclick = function() { closeModal(); };
             document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
             document.getElementById('btnGoogle').href = "https://www.google.com/search?q=" + encodeURIComponent(l.t + " " + (l.a || ''));
+          document.getElementById('btnChamilah').href = "https://shamela.ws/index.php/search?q=" + encodeURIComponent(l.t);
             document.getElementById('btnArchive').href = "https://archive.org/search?query=" + encodeURIComponent(l.t);
             document.getElementById('bookModal').style.display = "block";
         }

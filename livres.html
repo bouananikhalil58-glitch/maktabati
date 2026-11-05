@@ -66,7 +66,7 @@
             <p class="modal-detail" id="modalYear"></p>
             <p class="modal-detail" id="modalStatus"></p>
             
-                <a href="#" class="btn-search" id="modalSearchBtn" target="_blank">🔍 بحث في المجال</a>
+             <a href="https://shamela.ws" target="_blank" class="btn-search" id="modalSearchBtn" style="background: #8b5cf6;">🔍 المكتبة الشاملة</a>   
                 <a href="#" class="btn-search" id="btnGoogle" target="_blank" style="background: #4285f4;">🔍 Google</a>
                 <a href="#" class="btn-search" id="btnArchive" target="_blank" style="background: #10b981;">📚 Archive</a>
         </div>
@@ -165,9 +165,10 @@
             document.getElementById('modalYear').textContent = l.y ? "السنة: " + l.y : "";
             document.getElementById('modalStatus').textContent = "الحالة: " + (l.s || '');
                         document.getElementById('modalSearchBtn').onclick = function() { closeModal(); };
-            document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
+            //document.getElementById('modalSearchBtn').href = "livres.html?domaine=" + encodeURIComponent(l.d);
+            document.getElementById('modalSearchBtn').href = "https://shamela.ws/index.php/search?q=" + encodeURIComponent(l.t);
             document.getElementById('btnGoogle').href = "https://www.google.com/search?q=" + encodeURIComponent(l.t + " " + (l.a || ''));
-          document.getElementById('btnChamilah').href = "https://shamela.ws/index.php/search?q=" + encodeURIComponent(l.t);
+          //document.getElementById('btnChamilah').href = "https://shamela.ws/index.php/search?q=" + encodeURIComponent(l.t);
             document.getElementById('btnArchive').href = "https://archive.org/search?query=" + encodeURIComponent(l.t);
             document.getElementById('bookModal').style.display = "block";
         }
